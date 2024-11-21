@@ -1,0 +1,266 @@
+---
+title: "EDA"
+author: "Donghyun Lee"
+date: "2024-05-26"
+output:
+  pdf_document:
+    latex_engine: xelatex
+mainfont: NanumGothic
+---
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(tidyverse)
+```
+
+### 1. 잠실역
+
+```{r, warning=FALSE, message=FALSE}
+df <- read_csv("data/df_jamsil.csv")
+```
+
+
+### temp_avg
+
+```{r}
+ggplot(data=df, mapping=aes(x=temp_avg, y=total)) +
+  geom_point() +
+  labs(title = "Average Temperature")
+cor(df$temp_avg, df$total)
+```
+
+\newpage
+### precipitation
+
+```{r}
+ggplot(data=df, mapping=aes(x=precipitation, y=total)) +
+  geom_point() +
+  labs(title = "Precipitation")
+cor(df$precipitation, df$total)
+```
+
+\newpage
+### peak_jamsil
+
+```{r}
+df$peak_jamsil <- factor(df$peak_jamsil)
+ggplot(data=df, mapping=aes(x=peak_jamsil, y=total)) +
+  geom_boxplot() +
+  labs(title = "Cherry blossom, Children's day, Christmas")
+```
+
+\newpage
+### holiday
+
+```{r}
+df$holiday <- factor(df$holiday)
+ggplot(data=df, mapping=aes(x=holiday, y=total)) +
+  geom_boxplot() +
+  labs(title = "Lunar New Year, Chuseok")
+```
+
+\newpage
+### 2. 강남역
+
+```{r, warning=FALSE, message=FALSE}
+df <- read_csv("data/df_gangnam.csv")
+```
+
+
+### temp_avg
+
+```{r}
+ggplot(data=df, mapping=aes(x=temp_avg, y=total)) +
+  geom_point() +
+  labs(title = "Average Temperature")
+cor(df$temp_avg, df$total)
+```
+\newpage
+### precipitation
+
+```{r}
+ggplot(data=df, mapping=aes(x=precipitation, y=total)) +
+  geom_point() +
+  labs(title = "Precipitation")
+cor(df$precipitation, df$total)
+```
+\newpage
+### peak_gangnam
+
+```{r}
+df$peak_gangnam <- factor(df$peak_gangnam)
+ggplot(data=df, mapping=aes(x=peak_gangnam, y=total)) +
+  geom_boxplot() +
+  labs(title = "Children's day")
+```
+
+\newpage
+### holiday
+
+```{r}
+df$holiday <- factor(df$holiday)
+ggplot(data=df, mapping=aes(x=holiday, y=total)) +
+  geom_boxplot() +
+  labs(title = "Lunar New Year, Chuseok")
+```
+
+\newpage
+### 3. 여의도역
+
+```{r, warning=FALSE, message=FALSE}
+df <- read_csv("data/df_yeouido.csv")
+```
+
+### temp_avg
+
+```{r}
+ggplot(data=df, mapping=aes(x=temp_avg, y=total)) +
+  geom_point() +
+  labs(title = "Average Temperature")
+cor(df$temp_avg, df$total)
+```
+\newpage
+### precipitation
+
+```{r}
+ggplot(data=df, mapping=aes(x=precipitation, y=total)) +
+  geom_point() +
+  labs(title = "Precipitation")
+cor(df$precipitation, df$total)
+```
+\newpage
+### peak_yeouido
+
+```{r}
+df$peak_yeouido <- factor(df$peak_yeouido)
+ggplot(data=df, mapping=aes(x=peak_yeouido, y=total)) +
+  geom_boxplot() +
+  labs(title = "Firework")
+```
+
+\newpage
+### holiday
+
+```{r}
+df$holiday <- factor(df$holiday)
+ggplot(data=df, mapping=aes(x=holiday, y=total)) +
+  geom_boxplot() +
+  labs(title = "Lunar New Year, Chuseok")
+```
+
+\newpage
+### 4. 서울역
+
+```{r, warning=FALSE, message=FALSE}
+df <- read_csv("data/df_seoul.csv")
+df <- df %>% mutate(total = 승차총승객수 + 하차총승객수)
+```
+
+
+### temp_avg
+
+```{r}
+ggplot(data=df, mapping=aes(x=temp_avg, y=total)) +
+  geom_point() +
+  labs(title = "Average Temperature")
+cor(df$temp_avg, df$total)
+```
+\newpage
+### precipitation
+
+```{r}
+ggplot(data=df, mapping=aes(x=precipitation, y=total)) +
+  geom_point() +
+  labs(title = "Precipitation")
+cor(df$precipitation, df$total)
+```
+\newpage
+### peak_seoul_1
+
+```{r}
+df$peak_seoul_1 <- factor(df$peak_seoul_1)
+ggplot(data=df, mapping=aes(x=peak_seoul_1, y=total)) +
+  geom_boxplot() +
+  labs(title = "Children's day")
+```
+
+\newpage
+### peak_seoul_2
+
+```{r}
+df$peak_seoul_2 <- factor(df$peak_seoul_2)
+ggplot(data=df, mapping=aes(x=peak_seoul_2, y=total)) +
+  geom_boxplot() +
+  labs(title = "Lunar new year day, Chuseok")
+```
+
+\newpage
+### peak_seoul_3
+
+```{r}
+df$peak_seoul_3 <- factor(df$peak_seoul_3)
+ggplot(data=df, mapping=aes(x=peak_seoul_3, y=total)) +
+  geom_boxplot() +
+  labs(title = "A day before and after Lunar new year day, Chuseok")
+```
+
+\newpage
+### 5. 고속터미널역
+
+```{r, warning=FALSE, message=FALSE}
+df <- read_csv("data/df_express_terminal.csv")
+df <- df %>% mutate(total = 승차총승객수 + 하차총승객수)
+```
+
+### temp_avg
+
+```{r}
+ggplot(data=df, mapping=aes(x=temp_avg, y=total)) +
+  geom_point() +
+  labs(title = "Average Temperature")
+cor(df$temp_avg, df$total)
+```
+\newpage
+### precipitation
+
+```{r}
+ggplot(data=df, mapping=aes(x=precipitation, y=total)) +
+  geom_point() +
+  labs(title = "Precipitation")
+cor(df$precipitation, df$total)
+```
+\newpage
+### peak_express_1
+
+```{r}
+df$peak_express_1 <- factor(df$peak_express_1)
+ggplot(data=df, mapping=aes(x=peak_express_1, y=total)) +
+  geom_boxplot() +
+  labs(title = "Children's day")
+```
+\newpage
+### peak_express_2
+
+```{r}
+df$peak_express_2 <- factor(df$peak_express_2)
+ggplot(data=df, mapping=aes(x=peak_express_2, y=total)) +
+  geom_boxplot() +
+  labs(title = "Lunar new year day, Chuseok")
+```
+\newpage
+### peak_express_3
+
+```{r}
+df$peak_express_3 <- factor(df$peak_express_3)
+ggplot(data=df, mapping=aes(x=peak_express_3, y=total)) +
+  geom_boxplot() +
+  labs(title = "A day before and after Lunar new year day, Chuseok")
+```
+\newpage
+### peak_express_4
+
+```{r}
+df$peak_express_4 <- factor(df$peak_express_4)
+ggplot(data=df, mapping=aes(x=peak_express_4, y=total)) +
+  geom_boxplot() +
+  labs(title = "The first and last day of the year")
+```
